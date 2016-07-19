@@ -9,12 +9,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="user")
+@Table(name="userinfo")
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
+  private long id;
+
+
+  @NotNull
+  @Size(min = 2, max = 80)
+  private String password; 
   
   @NotNull
   @Size(min = 3, max = 80)
@@ -22,24 +27,26 @@ public class User {
   
   @NotNull
   @Size(min = 2, max = 80)
-  private String username;
+  private String name;
 
-  public User() { }
 
-  public User(int id) { 
+public User() { }
+
+  public User(long id) { 
     this.id = id;
   }
 
-  public User(String email, String username) {
+  public User(String email, String name) {
     this.email = email;
-    this.username = username;
+    this.name = name;
+    this.password = "fjaijhai";
   }
 
-  public int getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(int value) {
+  public void setId(long value) {
     this.id = value;
   }
 
@@ -51,12 +58,18 @@ public class User {
     this.email = value;
   }
   
-  public String getUsername() {
-    return username;
+  public String getName() {
+    return name;
   }
 
-  public void setUsername(String value) {
-    this.username = value;
+  public void setName(String value) {
+    this.name = value;
   }
-  
+  public String getPassword() {
+    return name;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 } // class User

@@ -13,7 +13,7 @@ import liang.model.User;
 
 @Repository
 @Transactional
-public class UserDAO {
+public class UserDao {
   
   @Autowired
   private SessionFactory _sessionFactory;
@@ -44,7 +44,7 @@ public class UserDAO {
         .uniqueResult();
   }
 
-  public User getById(int id) {
+  public User getById(long id) {
     return (User) getSession().load(User.class, id);
   }
 

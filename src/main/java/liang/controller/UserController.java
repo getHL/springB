@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import liang.dao.UserDAO;
+import liang.dao.UserDao;
 import liang.model.User;
 
 @Controller
@@ -13,14 +13,14 @@ import liang.model.User;
 public class UserController {
 
   @Autowired
-  private UserDAO _userDAO;
+  private UserDao _userDao;
   
   @RequestMapping(value="/delete")
   @ResponseBody
-  public String delete(int id) {
+  public String delete(long id) {
     try {
       User user = new User(id);
-      _userDAO.delete(user);
+      _userDao.delete(user);
     }
     catch(Exception ex) {
       return ex.getMessage();
@@ -33,7 +33,7 @@ public class UserController {
   public String getByEmail(String email) {
     String userId;
     try {
-      User user = _userDAO.getByEmail(email);
+      User user = _userDao.getByEmail(email);
       userId = String.valueOf(user.getId());
     }
     catch(Exception ex) {
@@ -44,10 +44,10 @@ public class UserController {
 
   @RequestMapping(value="/save")
   @ResponseBody
-  public String create(String email, String username) {
+  public String create(String username,String email, String password) {
     try {
-      User user = new User(email, username);
-      _userDAO.save(user);
+      User user = new User(username, email);
+      _userDao.save(user);
     }
     catch(Exception ex) {
       return ex.getMessage();
