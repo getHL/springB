@@ -39,6 +39,7 @@ public class Question {
 	  @Temporal(TemporalType.TIMESTAMP)
 	  private Date asktime = new Timestamp(System.currentTimeMillis());
 	  
+	  
 	  @NotNull
 	  private boolean answered = false;
 	
