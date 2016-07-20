@@ -19,7 +19,6 @@ public class Answer {
 	@NotNull
 	private int questionId;
 
-
 	@NotNull
 	@Size(max = 500)
 	private String content;
