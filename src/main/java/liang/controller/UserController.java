@@ -9,50 +9,43 @@ import liang.dao.UserDao;
 import liang.model.User;
 
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value="/account")
 public class UserController {
 
-  @Autowired
-  private UserDao _userDao;
-  
-  @RequestMapping(value="/delete")
-  @ResponseBody
-  public String delete(long id) {
-    try {
-      User user = new User(id);
-      _userDao.delete(user);
-    }
-    catch(Exception ex) {
-      return ex.getMessage();
-    }
-    return "User succesfully deleted!";
-  }
-  
-  @RequestMapping(value="/get-by-email")
-  @ResponseBody
-  public String getByEmail(String email) {
-    String userId;
-    try {
-      User user = _userDao.getByEmail(email);
-      userId = String.valueOf(user.getId());
-    }
-    catch(Exception ex) {
-      return "User not found";
-    }
-    return "The user id is: " + userId;
-  }
+    @Autowired
+    private UserDao userrDAO;
+    
+    
+    @RequestMapping(value="/create")
+    @ResponseBody
+    public String create(String username,String email, String password) {
 
-  @RequestMapping(value="/save")
-  @ResponseBody
-  public String create(String username,String email, String password) {
-    try {
-      User user = new User(username, email);
-      _userDao.save(user);
-    }
-    catch(Exception ex) {
-      return ex.getMessage();
-    }
-    return "User succesfully saved!";
-  }
+        User user = new User(username, email);
+        userrDAO.save(user);
 
-} // class UserController
+        return "User succesfully saved!";
+    }    
+    
+    
+    @RequestMapping(value="/delete")
+    @ResponseBody
+    public String delete(long id) {
+        
+    User user = new User(id);
+    userrDAO.delete(user);
+
+      return "User succesfully deleted!";
+    }
+    
+    @RequestMapping(value="/get-by-email")
+    @ResponseBody
+    public String getByEmail(String email) {
+        String userId;
+
+        User user = userrDAO.getByEmail(email);
+        userId = String.valueOf(user.getId());
+
+        return "The user id is: " + userId;
+    }
+
+}
