@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import liang.dao.QuestionDAO;
+import liang.dao.QuestionRepository;
 import liang.model.Question;
 
 @Controller
@@ -13,15 +13,14 @@ import liang.model.Question;
 public class QuestionController {
 	
 	@Autowired
-	QuestionDAO qDAO;
+	QuestionRepository qDAO;
 	
 	@RequestMapping("/add")
 	@ResponseBody
-	public String add(String content, String asker){
+	public String add(String topic, String content, String asker){
 		
-		Question question = new Question(content, asker);
+		Question question = new Question(topic, content, asker);
 		qDAO.save(question);
-		
 		return "add question success";
 	}
 	
@@ -29,8 +28,14 @@ public class QuestionController {
 	@ResponseBody
 	public String delete(int id){
 		
-		qDAO.delete(id);
 		return "delete success";
+	}
+	
+	@RequestMapping("/update")
+	public String update(String topic, long id){
+		
+		qDAO.update(topic, id);
+		return "update success!";
 	}
 
 }
