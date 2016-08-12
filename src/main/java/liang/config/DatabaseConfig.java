@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 
- * @author liangzhijian 注意：使用spring data jpa的时候将其注解（为了利用hibernate动态建表可以先跑一次再注解）
+ * @author liangzhijian 注意：使用spring data jpa的时候将其注解？（为了利用hibernate动态建表可以先跑一次再将其注解）
  * @date 2016年8月4日
  * @time 下午5:48:17
  */
